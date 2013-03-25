@@ -1,9 +1,31 @@
 require 'spec_helper'
 
-describe '#somethingkfldsfkksdjfksdjf' do
+describe '#initialize' do
 
-  it 'should be true' do
-    expect('a').to eq('a')
+  it 'should should create a Pattern object' do
+    pattern = Sightreader::Pattern.new
+    expect(pattern).to be_a(Sightreader::Pattern)
+  end
+
+  it 'should initlize an empty array to hold the pattern' do
+    pattern = Sightreader::Pattern.new
+    pattern.rhythm.should be_empty
   end
   
+end
+
+describe '#bars=' do
+
+  it 'should fill the @rhythm Array with the correct number of dashes' do
+    pattern = Sightreader::Pattern.new
+    pattern.bars = 1
+    pattern.rhythm.should eq(['----------------'])
+  end
+
+  it 'should set @bars' do
+    pattern = Sightreader::Pattern.new
+    pattern.bars = 23
+    pattern.bars.should eq 23
+  end
+
 end
