@@ -11,18 +11,22 @@ module Sightreader
     end
 
     def bars=(number_of_bars)
-      number_of_bars*16.times do
-        @rhythm << '-'
+      @rhythm = []
+      (number_of_bars-1) * 16 + 1.times do
+        add_bar
       end
       @bars = number_of_bars
     end
 
-    def toggle_beat(options = {})
-      beat_to_toggle = (16 * (options[:bar] - 1) + options[:beat] - 1)
-      if @rhythm[beat_to_toggle] == '-'
-        @rhythm[beat_to_toggle] = 'x'
+    def add_bar
+      @rhythm << ['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-']
+    end
+
+    def toggle_beat(bar, beat)
+      if @rhythm[bar-1][beat-1] == '-'
+        @rhythm[bar-1][beat-1] = 'x'
       else
-        @rhythm[beat_to_toggle] = '-'
+        @rhythm[bar-1][beat-1] = '-'
       end
     end
 
