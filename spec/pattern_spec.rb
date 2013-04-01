@@ -70,4 +70,13 @@ describe '#toggle_beat' do
     pattern.rhythm.should eq([['-', '-', '-','x', '-','-', '-', '-', '-', 'x', '-', '-', '-', '-', '-', '-']])
   end
 
+  it 'should turn a beat off when on' do
+    pattern = Sightreader::Pattern.new
+    pattern.bars = 1
+    pattern.toggle_beat(1, 4)
+    pattern.rhythm.should eq([['-', '-', '-','x', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']])
+    pattern.toggle_beat(1, 4)
+    pattern.rhythm.should eq([['-', '-', '-','-', '-','-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']])
+  end
+
 end
